@@ -111,39 +111,43 @@ function init() {
     }
   }
 
-  const land = BufferGeometryUtils.mergeGeometries(landBlocks);
-  land.computeBoundingSphere();
+  {
+    const land = BufferGeometryUtils.mergeGeometries(landBlocks);
+    land.computeBoundingSphere();
 
-  const dirt = new THREE.TextureLoader().load('assets/atlas.png');
-  dirt.colorSpace = THREE.SRGBColorSpace;
-  dirt.magFilter = THREE.NearestFilter;
+    const dirt = new THREE.TextureLoader().load('assets/atlas.png');
+    dirt.colorSpace = THREE.SRGBColorSpace;
+    dirt.magFilter = THREE.NearestFilter;
 
-  scene.add(
-    new THREE.Mesh(
-      land,
-      new THREE.MeshLambertMaterial({
-        map: dirt,
-        side: THREE.DoubleSide,
-      })
-    )
-  );
+    scene.add(
+      new THREE.Mesh(
+        land,
+        new THREE.MeshLambertMaterial({
+          map: dirt,
+          side: THREE.DoubleSide,
+        })
+      )
+    );
+  }
 
-  const sea = BufferGeometryUtils.mergeGeometries(seaBlocks);
-  land.computeBoundingSphere();
+  {
+    const sea = BufferGeometryUtils.mergeGeometries(seaBlocks);
+    sea.computeBoundingSphere();
 
-  const water = new THREE.TextureLoader().load('assets/water.png');
-  water.colorSpace = THREE.SRGBColorSpace;
-  water.magFilter = THREE.NearestFilter;
+    const water = new THREE.TextureLoader().load('assets/water.png');
+    water.colorSpace = THREE.SRGBColorSpace;
+    water.magFilter = THREE.NearestFilter;
 
-  scene.add(
-    new THREE.Mesh(
-      sea,
-      new THREE.MeshLambertMaterial({
-        map: water,
-        side: THREE.DoubleSide,
-      })
-    )
-  );
+    scene.add(
+      new THREE.Mesh(
+        sea,
+        new THREE.MeshLambertMaterial({
+          map: water,
+          side: THREE.DoubleSide,
+        })
+      )
+    );
+  }
 
   const ambientLight = new THREE.AmbientLight(0xeeeeee, 3);
   scene.add(ambientLight);
